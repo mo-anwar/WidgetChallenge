@@ -62,19 +62,21 @@ extension WidgetsDashboardViewModel {
 extension WidgetsDashboardViewModel {
     
     private func loadInitialData() {
-        do {
-            defer {
-                output.viewState = .idle
+        Task { @MainActor in
+            do {
+                defer {
+                    output.viewState = .idle
+                }
+                
+                output.viewState = .loading(isUserInteractionEnabled: true)
+                
+                let widgets = try await widgetsDashboardRepository.getWidgets()
+                
+                output.dataSource = createDashboard(widgets: widgets)
+                
+            } catch {
+                output.viewState = .error(message: error.localizedDescription)
             }
-            
-            output.viewState = .loading(isUserInteractionEnabled: true)
-            
-            let widgets = try widgetsDashboardRepository.getWidgets()
-            
-            output.dataSource = createDashboard(widgets: widgets)
-            
-        } catch {
-            output.viewState = .error(message: error.localizedDescription)
         }
     }
     

@@ -69,7 +69,7 @@ final class WidgetsDashboardViewController: ViewController {
             .$dataSource
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sections in
-                guard let self else { return }
+                guard let self, !sections.isEmpty else { return }
                 let layout = DashboardLayoutCreator.create(sections: sections)
                 collectionView.collectionViewLayout = layout
             }

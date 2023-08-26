@@ -19,12 +19,12 @@ enum ServiceError: Error, LocalizedError {
 }
 
 protocol WidgetsDashboardRepositoryProtocol {
-    func getWidgets() throws -> [Widget]
+    @MainActor func getWidgets() async throws -> [Widget]
 }
 
 final class WidgetsDashboardRepository: WidgetsDashboardRepositoryProtocol {
     
-    func getWidgets() throws -> [Widget] {
+    @MainActor func getWidgets() async throws -> [Widget] {
         guard
             let url = Bundle.main.url(forResource: "dashboard", withExtension: "json"),
             let data = try? Data(contentsOf: url),
