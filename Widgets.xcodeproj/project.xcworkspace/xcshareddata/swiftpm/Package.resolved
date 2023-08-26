@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "combinedatasources",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineDataSources",
+      "state" : {
+        "revision" : "362795e0336f2c1637036f692a3b5d05806302b4",
+        "version" : "0.2.5"
+      }
+    },
+    {
+      "identity" : "combinetestextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/industrialbinaries/CombineTestExtensions",
+      "state" : {
+        "branch" : "master",
+        "revision" : "7b3d916bf0b7d8109f04da38ef90d98417a13fa7"
+      }
+    }
+  ],
+  "version" : 2
+}
